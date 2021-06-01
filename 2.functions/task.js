@@ -1,10 +1,33 @@
+'Use strict'
+
 // Задание 1
 function getArrayParams(arr) {
-  let min,max,sum,avg;
+  let min, max, sum, avg;
 
   // Ваш код
+  min = 101;
+  max = -101;
+  sum = 0;
 
-  return { min:min, max:max, avg:avg };
+  const inArray = arr;
+
+  for (let i = 0; i < inArray.length; i++) {
+    sum += inArray[i];
+    if (inArray[i] > max) {
+      max = inArray[i];
+    };
+    if (inArray[i] < min) {
+      min = inArray[i];
+    };
+  }
+
+  avg = (sum / inArray.length).toFixed(2);
+
+  return {
+    min: min,
+    max: max,
+    avg: avg
+  };
 }
 
 // Задание 2
@@ -21,6 +44,6 @@ function makeWork(arrOfArr, func) {
 
   // Ваш кода
   // for ...
-  
+
   return max
 }
