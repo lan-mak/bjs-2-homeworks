@@ -35,6 +35,11 @@ function worker(arr) {
   let sum;
 
   // Ваш код
+  sum = arr;
+  for (let i = 0; i < sum.length; i++) {
+    let sumArrayItem = sum[i].reduce((sum, item) => sum + item)
+    sum[i] = sumArrayItem;
+  }
 
   return sum;
 }
@@ -43,7 +48,13 @@ function makeWork(arrOfArr, func) {
   let max
 
   // Ваш кода
-  // for ...
+  max = null
+  let sumItem = func(arrOfArr)
+  for (let i = 0; i < sumItem.length; i++) {
+    if (sumItem[i] >= max) {
+      max = sumItem[i]
+    }
+  }
 
   return max
 }
