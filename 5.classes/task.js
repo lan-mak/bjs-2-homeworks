@@ -13,7 +13,7 @@ class PrintEditionItem {
 
   fix() {
     let fix = this.state * 1.5;
-    this.state = fix
+    this.state = fix;
   }
 
   set state(value) {
@@ -38,7 +38,7 @@ class Magazine extends PrintEditionItem {
     this.type = 'magazine';
   }
   fix() {
-    super.fix()
+    super.fix();
   }
 }
 
@@ -50,7 +50,7 @@ class Book extends PrintEditionItem {
     this.type = 'book';
   }
   fix() {
-    super.fix()
+    super.fix();
   }
 }
 
@@ -61,7 +61,7 @@ class NovelBook extends Book {
     this.type = 'novel';
   }
   fix() {
-    super.fix()
+    super.fix();
   }
 }
 
@@ -72,7 +72,7 @@ class FantasticBook extends Book {
     this.type = 'fantastic';
   }
   fix() {
-    super.fix()
+    super.fix();
   }
 }
 
@@ -83,7 +83,7 @@ class DetectiveBook extends Book {
     this.type = 'detective';
   }
   fix() {
-    super.fix()
+    super.fix();
   }
 }
 
@@ -103,24 +103,24 @@ class Library extends PrintEditionItem {
 
 
   findBookBy(type, value) {
-    let findBook = this.books.find(book => book[type] === value)
+    let findBook = this.books.find(book => book[type] === value);
     if (findBook === undefined) {
-      return null
+      return null;
     } else {
-      return findBook
+      return findBook;
     }
   }
 
   giveBookByName(bookName) {
     let giveBook = this.books.find((book, i) => {
       if (book.name === bookName) {
-        return this.books.splice(i, 1)
+        return this.books.splice(i, 1);
       }
     })
     if (giveBook === undefined) {
-      giveBook = null
+      giveBook = null;
     }
-    return giveBook
+    return giveBook;
   }
 }
 
@@ -134,30 +134,30 @@ class Student {
 
   addGrade(mark, subject) {
       if(mark > 5) {
-        alert('Ошибка, оценка должна быть числом от 1 до 5')
+        alert('Ошибка, оценка должна быть числом от 1 до 5');
       } else {
         if(subject in this.subjects === false) {
-          let arreyItems = []
-          arreyItems.push(mark)
-          this.subjects[subject] = arreyItems
+          let arreyItems = [];
+          arreyItems.push(mark);
+          this.subjects[subject] = arreyItems;
         } else {
-          this.subjects[subject].push(mark)
+          this.subjects[subject].push(mark);
         }
       }
   }
 
   getAverageBySubject(subject) {
     if(subject in this.subjects === false) {
-      alert('Несуществующий предмет')
+      alert('Несуществующий предмет');
     } else {
-      let arrItems = (this.subjects[subject].reduce((sum, current) => sum + current)) / this.subjects[subject].length
-      return arrItems
+      let arrItems = (this.subjects[subject].reduce((sum, current) => sum + current)) / this.subjects[subject].length;
+      return arrItems;
     }
   }
 
   getAverage() {
-    let sumAllItems = [].concat(...Object.values(this.subjects)).reduce((sum, current) => sum + current)
-    return sumAllItems / [].concat(...Object.values(this.subjects)).length
+    let sumAllItems = [].concat(...Object.values(this.subjects)).reduce((sum, current) => sum + current);
+    return sumAllItems / [].concat(...Object.values(this.subjects)).length;
   }
 
   exclude(reason) {
