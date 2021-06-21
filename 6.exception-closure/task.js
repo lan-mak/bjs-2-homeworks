@@ -1,3 +1,5 @@
+'use strict';
+
 // Задача №1
 
 function parseCount(value) {
