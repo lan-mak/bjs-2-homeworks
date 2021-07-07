@@ -51,26 +51,23 @@
 function debounceDecoratorNew(f, ms) {
   // Ваш код
   let timeout;
-  let oldTime;
+  let point = 0;
 
 
   function wrapper(...args) {
-    let time = performance.now()
-
 
     if (!timeout) {
-      timeout = setTimeout(() => {
-        f();
-      });
-    } else if (timeout && time - ms > ms && time - oldTime > ms) {
-      timeout = setTimeout(() => {
-        f.apply(this, args);
-      }, ms);
-    } else {
-      oldTime = time
-      console.log(oldTime)
-      console.log('проигнарировано')
-      clearTimeout(timeout);
+      f()
+    } 
+
+    timeout = performance.now()
+
+    if (timeout - ms > ms && point === 0 ) {
+      f()
+      console
+      point = performance.now()
+    } else if (point - timeout < ms) {
+      console.log('проигнорировано')
     }
   }
 
