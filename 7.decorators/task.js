@@ -58,16 +58,16 @@ function debounceDecoratorNew(f, ms) {
 
     if (!timeout) {
       f()
-    } 
+    }
 
     timeout = performance.now()
 
     if (timeout - ms > ms && point === 0 ) {
       f()
-      console
       point = performance.now()
-    } else if (point - timeout < ms) {
-      console.log('проигнорировано')
+    } else if (point - timeout > ms) {
+      f()
+      point = performance.now()
     }
   }
 
