@@ -49,14 +49,53 @@
 
 // Задача №2
 
-function debounceDecoratorNew(f, ms) {
-  // Ваш код
+// function debounceDecoratorNew(f, ms) {
+//   // Ваш код
+//   let timer;
+//   let flag = false
+
+//   function wrapper(...args) {
+//     if (!flag) {
+//       f()
+//       flag = true;
+//       timer = setTimeout(() => {
+//         flag = false
+//       }, ms)
+//     } else {
+//       clearTimeout(timer)
+//       timer = setTimeout(() => {
+//         flag = false
+//       }, ms)
+//     }
+//   }
+
+//   return wrapper;
+// }
+
+
+// const sendSignal = () => console.log("Сигнал отправлен");
+// const upgradedSendSignal = debounceDecoratorNew(sendSignal, 2000);
+// setTimeout(upgradedSendSignal); // Сигнал отправлен
+// setTimeout(upgradedSendSignal, 300); // проигнорировано так как от последнего вызова прошло менее 2000мс
+// setTimeout(upgradedSendSignal, 900); // проигнорировано аналогично
+// setTimeout(upgradedSendSignal, 1200); // проигнорировано аналогично
+// setTimeout(upgradedSendSignal, 2300); // проигнорировано аналогично
+// setTimeout(upgradedSendSignal, 4400); // Сигнал отправлен
+// setTimeout(upgradedSendSignal, 4500); // проигнорировано аналогично
+
+
+// Задача №3
+
+function debounceDecorator2(func, ms) {
   let timer;
   let flag = false
+  let count = null;
 
   function wrapper(...args) {
+    count += 1;
+    console.log(count)
     if (!flag) {
-      f()
+      func()
       flag = true;
       timer = setTimeout(() => {
         flag = false
@@ -70,20 +109,14 @@ function debounceDecoratorNew(f, ms) {
   }
 
   return wrapper;
-}
-
+ }
 
 const sendSignal = () => console.log("Сигнал отправлен");
-const upgradedSendSignal = debounceDecoratorNew(sendSignal, 2000);
-setTimeout(upgradedSendSignal); // Сигнал отправлен
-setTimeout(upgradedSendSignal, 300); // проигнорировано так как от последнего вызова прошло менее 2000мс
-setTimeout(upgradedSendSignal, 900); // проигнорировано аналогично
-setTimeout(upgradedSendSignal, 1200); // проигнорировано аналогично
-setTimeout(upgradedSendSignal, 2300); // проигнорировано аналогично
-setTimeout(upgradedSendSignal, 4400); // Сигнал отправлен
-setTimeout(upgradedSendSignal, 4500); // проигнорировано аналогично
-
-function debounceDecorator2(func) {
-
-  return wrapper;
- }
+const upgSendSignal = debounceDecorator2(sendSignal, 2000);
+setTimeout(upgSendSignal); // Сигнал отправлен
+setTimeout(upgSendSignal, 300); // проигнорировано так как от последнего вызова прошло менее 2000мс
+setTimeout(upgSendSignal, 900); // проигнорировано аналогично
+setTimeout(upgSendSignal, 1200); // проигнорировано аналогично
+setTimeout(upgSendSignal, 2300); // проигнорировано аналогично
+setTimeout(upgSendSignal, 4400); // Сигнал отправлен
+setTimeout(upgSendSignal, 4500); // проигнорировано аналогично
