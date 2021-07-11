@@ -1,7 +1,7 @@
 // Задача №1
 
 function cachingDecoratorNew(func) {
-  // Ваш код
+
   let cache = [];
 
   function wrapper(...args) {
@@ -12,7 +12,7 @@ function cachingDecoratorNew(func) {
     if (checkCache >= 0) {
       return "Из кэша: " + cache[checkCache].count;
     } else if (checkCache < 0) {
-      return checkArrLength()
+      return checkArrLength();
     }
 
     function checkArrLength() {
@@ -32,7 +32,7 @@ function cachingDecoratorNew(func) {
     }
   }
 
-  return wrapper
+  return wrapper;
 }
 
 
@@ -49,22 +49,22 @@ upgradedAddThree(5, 2, 3); // вычисляем: 10
 // Задача №2
 
 function debounceDecoratorNew(f, ms) {
-  // Ваш код
+
   let timer;
-  let flag = false
+  let flag = false;
 
   function wrapper(...args) {
     if (!flag) {
-      f()
+      f();
       flag = true;
       timer = setTimeout(() => {
         flag = false
-      }, ms)
+      }, ms);
     } else {
-      clearTimeout(timer)
+      clearTimeout(timer);
       timer = setTimeout(() => {
         flag = false
-      }, ms)
+      }, ms);
     }
   }
 
@@ -86,24 +86,24 @@ function debounceDecoratorNew(f, ms) {
 // Задача №3
 
 function debounceDecorator2(func, ms) {
-  // Ваш код
+
   let timer;
-  let flag = false
+  let flag = false;
   wrapper.count = null;
 
   function wrapper(...args) {
     wrapper.count += 1;
     if (!flag) {
-      func()
+      func();
       flag = true;
       timer = setTimeout(() => {
         flag = false
-      }, ms)
+      }, ms);
     } else {
-      clearTimeout(timer)
+      clearTimeout(timer);
       timer = setTimeout(() => {
         flag = false
-      }, ms)
+      }, ms);
     }
   }
 
