@@ -87,22 +87,16 @@
 // Задача №3
 
 function debounceDecorator2(func, ms) {
-  let timer;
   let flag = false
-  let count = null;
+  wrapper.count = null;
 
   function wrapper(...args) {
-    count += 1;
-    console.log(count)
+    wrapper.count += 1;
+    console.log('Количество вызовов: ', wrapper.count)
     if (!flag) {
       func()
       flag = true;
-      timer = setTimeout(() => {
-        flag = false
-      }, ms)
-    } else {
-      clearTimeout(timer)
-      timer = setTimeout(() => {
+      setTimeout(() => {
         flag = false
       }, ms)
     }
