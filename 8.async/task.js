@@ -49,9 +49,8 @@ class AlarmClock {
 
     let Data = new Date();
     let Hour = Data.getHours() < 10 ? `0${Data.getHours()}` : `${Data.getHours()}`;;
-    let Minutes = Data.getMinutes() < 10 ? `0${Data.getMinutes()}` : `${Data.getMinutes()}`; ;
+    let Minutes = Data.getMinutes() < 10 ? `0${Data.getMinutes()}` : `${Data.getMinutes()}`;;
 
-    // console.log(Hour + ":" + Minutes, 'текущее время')
     return `${Hour}:${Minutes}`
   }
 
@@ -65,13 +64,13 @@ class AlarmClock {
     function checkClock(item) {
       if (item.timeAction === currentTime) {
         item.func()
-      } 
+      }
     }
 
     if (this.timerId === null) {
       this.timerId = setInterval(() => {
         this.alarmCollection.forEach(checkClock)
-      });
+      }, 1000);
     }
   }
 
@@ -83,6 +82,7 @@ class AlarmClock {
   }
 
   printAlarms() {
+    console.log(`Всего будильников: ${this.alarmCollection.length}`)
     function showAlarms(item) {
       console.log(`id: ${item.id}; time: ${item.timeAction}`)
     }
@@ -98,14 +98,16 @@ class AlarmClock {
 
 
 const testCase = new AlarmClock();
-testCase.addClock('22:51', f => console.log('Будильник 1'), 1)
-testCase.addClock('22:52', f => console.log('Будильник 2'), 2)
-testCase.addClock('22:53', f => console.log('Будильник 3'), 3)
-testCase.addClock('21:58', f => console.log('Будильник 3'), 4)
+testCase.addClock('22:55', f => console.log('Будильник 1'), 1)
+testCase.addClock('22:56', f => console.log('Будильник 2'), 2)
+testCase.addClock('22:57', f => {
+  console.log('Будильник 3');
+  testCase.clearAlarms();
+  testCase.printAlarms();
+}, 3)
+testCase.addClock('21:58', f => console.log('Будильник 4'), 4)
 testCase.printAlarms()
 testCase.removeClock(4)
 testCase.printAlarms()
 testCase.start()
-// test.stop()
-// test.clearAlarms()
-
+testCase.stop()
