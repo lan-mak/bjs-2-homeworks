@@ -59,8 +59,6 @@ class AlarmClock {
     let currentTime = this.getCurrentFormattedTime()
     this.alarmCollection.forEach(checkClock)
 
-    console.log(currentTime)
-
     function checkClock(item) {
       if (item.timeAction === currentTime) {
         item.func()
