@@ -38,10 +38,9 @@ class AlarmClock {
 
     if (removeCheckId >= 0) {
       this.alarmCollection.splice(removeCheckId, 1)
-      console.warn('id удален = true')
+      console.warn('id удален')
       return true
     } else {
-      console.warn('id удален = true')
       return false
     }
   }
@@ -75,15 +74,38 @@ class AlarmClock {
       });
     }
   }
+
+  stop() {
+    if (this.timerId) {
+      clearInterval(this.timerId)
+      this.timerId = null
+    }
+  }
+
+  printAlarms() {
+    function showAlarms(item) {
+      console.log(`id: ${item.id}; time: ${item.timeAction}`)
+    }
+    this.alarmCollection.forEach(showAlarms)
+  }
+
+  clearAlarms() {
+    clearInterval(this.timerId)
+    this.alarmCollection.splice(0, this.alarmCollection.length)
+  }
 }
 
 
 
-const test = new AlarmClock;
-test.addClock('20:20', f => f, 5)
-test.addClock('20:25', f => f, 1)
-test.addClock('20:25', f => f, 5)
-test.addClock('23:22', f => f, 6)
+const testCase = new AlarmClock();
+testCase.addClock('22:51', f => console.log('Будильник 1'), 1)
+testCase.addClock('22:52', f => console.log('Будильник 2'), 2)
+testCase.addClock('22:53', f => console.log('Будильник 3'), 3)
+testCase.addClock('21:58', f => console.log('Будильник 3'), 4)
+testCase.printAlarms()
+testCase.removeClock(4)
+testCase.printAlarms()
+testCase.start()
+// test.stop()
+// test.clearAlarms()
 
-test.removeClock(7)
-test.start()
