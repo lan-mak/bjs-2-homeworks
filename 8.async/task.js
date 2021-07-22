@@ -55,11 +55,12 @@ class AlarmClock {
   }
 
   start() {
-    let currentTime = () => this.getCurrentFormattedTime()
-    this.alarmCollection.forEach(checkClock)
+    let checkClock = bindCheckClock.bind(this)
 
-    function checkClock(item) {
-      if (item.timeAction === currentTime()) {
+    function bindCheckClock(item) {
+      let currentTime = this.getCurrentFormattedTime()
+
+      if (item.timeAction === currentTime) {
         item.func()
       }
     }
@@ -95,10 +96,10 @@ class AlarmClock {
 
 
 const testCase = new AlarmClock();
-testCase.addClock('22:55', f => console.log('Будильник 1'), 1)
-testCase.addClock('22:56', f => console.log('Будильник 2'), 2)
-testCase.addClock('22:57', f => {
-  console.log('Будильник 3');
+testCase.addClock('21:42', f => console.log('Будильник 1', new Date()), 1)
+testCase.addClock('21:43', f => console.log('Будильник 2', new Date()), 2)
+testCase.addClock('21:44', f => {
+  console.log('Будильник 3', new Date());
   testCase.clearAlarms();
   testCase.printAlarms();
 }, 3)
