@@ -55,7 +55,7 @@ class AlarmClock {
   }
 
   start() {
-    let checkClock = bindCheckClock.bind(this)
+    let bindCheckClock = checkClock.bind(this)
 
     function bindCheckClock(item) {
       let currentTime = this.getCurrentFormattedTime()
@@ -67,7 +67,7 @@ class AlarmClock {
 
     if (this.timerId === null) {
       this.timerId = setInterval(() => {
-        this.alarmCollection.forEach(checkClock)
+        this.alarmCollection.forEach(bindCheckClock)
       }, 60000);
     }
   }
