@@ -57,7 +57,7 @@ class AlarmClock {
   start() {
     let bindCheckClock = checkClock.bind(this)
 
-    function bindCheckClock(item) {
+    function сheckClock(item) {
       let currentTime = this.getCurrentFormattedTime()
 
       if (item.timeAction === currentTime) {
