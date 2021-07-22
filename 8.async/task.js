@@ -68,7 +68,7 @@ class AlarmClock {
     if (this.timerId === null) {
       this.timerId = setInterval(() => {
         this.alarmCollection.forEach(checkClock)
-      }, 1000);
+      }, 60000);
     }
   }
 
