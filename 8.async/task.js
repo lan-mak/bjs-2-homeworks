@@ -47,9 +47,9 @@ class AlarmClock {
 
   getCurrentFormattedTime() {
 
-    let Data = new Date();
-    let Hour = Data.getHours() < 10 ? `0${Data.getHours()}` : `${Data.getHours()}`;;
-    let Minutes = Data.getMinutes() < 10 ? `0${Data.getMinutes()}` : `${Data.getMinutes()}`;;
+    let currentDate = new Date();
+    let Hour = currentDate.getHours() < 10 ? `0${currentDate.getHours()}` : `${currentDate.getHours()}`;;
+    let Minutes = currentDate.getMinutes() < 10 ? `0${currentDate.getMinutes()}` : `${currentDate.getMinutes()}`;;
 
     return `${Hour}:${Minutes}`
   }
