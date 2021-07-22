@@ -55,12 +55,11 @@ class AlarmClock {
   }
 
   start() {
-
-    let currentTime = this.getCurrentFormattedTime()
+    let currentTime = () => this.getCurrentFormattedTime()
     this.alarmCollection.forEach(checkClock)
 
     function checkClock(item) {
-      if (item.timeAction === currentTime) {
+      if (item.timeAction === currentTime()) {
         item.func()
       }
     }
